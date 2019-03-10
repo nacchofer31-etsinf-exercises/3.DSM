@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="prueba2" nsURI="prueba2" nsPrefix="prueba2">
+  <eClassifiers xsi:type="ecore:EClass" name="Aplicacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="atributo1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dynamic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ventana" eType="#//Ventana"
+        eOpposite="#//Ventana/aplicacion"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ventana">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aplicacion" eType="#//Aplicacion"
+        eOpposite="#//Aplicacion/ventana"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dynamic2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+</ecore:EPackage>
