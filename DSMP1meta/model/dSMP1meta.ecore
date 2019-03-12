@@ -2,23 +2,35 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dSMP1meta" nsURI="dSMP1meta" nsPrefix="dSMP1meta">
   <eClassifiers xsi:type="ecore:EClass" name="Proyecto">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="clase" lowerBound="1" upperBound="-1"
-        eType="#//Clase" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clases" lowerBound="1"
+        upperBound="-1" eType="#//Clase" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Clase">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="relacion" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relaciones" lowerBound="1"
         upperBound="-1" eType="#//Relacion" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="atributo" lowerBound="1"
         upperBound="-1" eType="#//Atributo" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="padre" eType="#//Clase"
+        eOpposite="#//Clase/hijos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hijos" upperBound="-1"
+        eType="#//Clase" eOpposite="#//Clase/padre"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relacion">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cardinalidad" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cardinalidades" lowerBound="1"
         upperBound="-1" eType="#//Cardinalidad"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Tipo"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Genericidad"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Cardinalidad"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Composicion"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Atributo"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Cardinalidad">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Composicion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Atributo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>

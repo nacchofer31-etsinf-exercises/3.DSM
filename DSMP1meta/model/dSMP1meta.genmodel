@@ -10,20 +10,30 @@
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="DSMP1meta" disposableProviderFactory="true" ecorePackage="dSMP1meta.ecore#/">
     <genClasses ecoreClass="dSMP1meta.ecore#//Proyecto">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Proyecto/clase"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Proyecto/clases"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Proyecto/nombre"/>
     </genClasses>
     <genClasses ecoreClass="dSMP1meta.ecore#//Clase">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Clase/relacion"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Clase/relaciones"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Clase/atributo"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Clase/nombre"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Clase/padre"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Clase/hijos"/>
     </genClasses>
     <genClasses ecoreClass="dSMP1meta.ecore#//Relacion">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Relacion/cardinalidad"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Relacion/cardinalidades"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Relacion/nombre"/>
     </genClasses>
     <genClasses ecoreClass="dSMP1meta.ecore#//Tipo"/>
-    <genClasses ecoreClass="dSMP1meta.ecore#//Genericidad"/>
-    <genClasses ecoreClass="dSMP1meta.ecore#//Cardinalidad"/>
-    <genClasses ecoreClass="dSMP1meta.ecore#//Composicion"/>
-    <genClasses ecoreClass="dSMP1meta.ecore#//Atributo"/>
+    <genClasses ecoreClass="dSMP1meta.ecore#//Cardinalidad">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Cardinalidad/min"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Cardinalidad/max"/>
+    </genClasses>
+    <genClasses ecoreClass="dSMP1meta.ecore#//Composicion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Composicion/max"/>
+    </genClasses>
+    <genClasses ecoreClass="dSMP1meta.ecore#//Atributo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Atributo/nombre"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
