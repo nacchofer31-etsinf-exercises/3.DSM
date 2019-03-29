@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dSMP1meta:Proyecto
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dSMP1meta="dSMP1meta"
+    xsi:schemaLocation="dSMP1meta dSMP1meta.ecore">
+  <clases nombre="Persona"
+      hijos="//@clases.1 //@clases.2">
+    <atributo
+        nombre="nombre">
+      <tipo
+          nombre="String"/>
+    </atributo>
+    <atributo
+        nombre="dni">
+      <tipo
+          nombre="String"/>
+    </atributo>
+  </clases>
+  <clases nombre="Cliente"
+      padre="//@clases.0"/>
+  <clases nombre="Empleado"
+      padre="//@clases.0"/>
+  <clases nombre="Alquiler"/>
+  <clases xsi:type="dSMP1meta:Asociacion"
+      nombre="Factura">
+    <atributo
+        nombre="Id">
+      <tipo
+          nombre="String"/>
+    </atributo>
+  </clases>
+  <clases nombre="1"/>
+  <clases nombre="2"/>
+  <clases nombre="3"/>
+  <relaciones
+      origen="//@clases.1"
+      destino="//@clases.3"
+      asociacion="//@clases.4"/>
+  <relaciones
+      nombre="rel1"
+      origen="//@clases.5"
+      destino="//@clases.6"/>
+  <relaciones
+      nombre="rel1"
+      origen="//@clases.5"
+      destino="//@clases.7"/>
+</dSMP1meta:Proyecto>
