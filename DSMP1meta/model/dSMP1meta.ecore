@@ -46,6 +46,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="destino" lowerBound="1"
         eType="#//Clase"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="asociacion" eType="#//Asociacion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cardinalidad" lowerBound="2"
+        upperBound="2" eType="#//Cardinalidad" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Tipo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -62,21 +64,18 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Composicion" eSuperTypes="#//Relacion">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="MaxUno"/>
+      <details key="constraints" value="MaxCar"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="MaxUno" value="self.max = 1"/>
+      <details key="MaxCar" value="self.cardinalidad -> first().max=1"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Atributo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tipo" lowerBound="1" eType="#//Tipo"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Asociativa" eSuperTypes="#//Relacion">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cardinalidad" lowerBound="2"
-        upperBound="2" eType="#//Cardinalidad" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Asociativa" eSuperTypes="#//Relacion"/>
   <eClassifiers xsi:type="ecore:EClass" name="Asociacion" eSuperTypes="#//Clase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Agregacion" eSuperTypes="#//Relacion"/>
 </ecore:EPackage>

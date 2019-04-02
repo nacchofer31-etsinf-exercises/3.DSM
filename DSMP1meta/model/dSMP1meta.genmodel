@@ -25,6 +25,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Relacion/origen"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Relacion/destino"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Relacion/asociacion"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Relacion/cardinalidad"/>
     </genClasses>
     <genClasses ecoreClass="dSMP1meta.ecore#//Tipo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Tipo/nombre"/>
@@ -33,16 +34,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Cardinalidad/min"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Cardinalidad/max"/>
     </genClasses>
-    <genClasses ecoreClass="dSMP1meta.ecore#//Composicion">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Composicion/max"/>
-    </genClasses>
+    <genClasses ecoreClass="dSMP1meta.ecore#//Composicion"/>
     <genClasses ecoreClass="dSMP1meta.ecore#//Atributo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dSMP1meta.ecore#//Atributo/nombre"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Atributo/tipo"/>
     </genClasses>
-    <genClasses ecoreClass="dSMP1meta.ecore#//Asociativa">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dSMP1meta.ecore#//Asociativa/cardinalidad"/>
-    </genClasses>
+    <genClasses ecoreClass="dSMP1meta.ecore#//Asociativa"/>
     <genClasses ecoreClass="dSMP1meta.ecore#//Asociacion"/>
+    <genClasses ecoreClass="dSMP1meta.ecore#//Agregacion"/>
   </genPackages>
 </genmodel:GenModel>

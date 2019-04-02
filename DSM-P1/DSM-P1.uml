@@ -13,11 +13,21 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_d5p1cDplEemikdYbbYz9ew" name="Empleado">
     <generalization xmi:type="uml:Generalization" xmi:id="_m3kysDplEemikdYbbYz9ew" general="_QhyccDplEemikdYbbYz9ew"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_dKI5sFVkEemc15eEWpJu6A" name="puesto" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_fK-6cDplEemikdYbbYz9ew" name="Cliente">
     <generalization xmi:type="uml:Generalization" xmi:id="_osbbgDplEemikdYbbYz9ew" general="_QhyccDplEemikdYbbYz9ew"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_cT4ckFVjEemc15eEWpJu6A" name="id socio" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+    </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_xu7WwDplEemikdYbbYz9ew" name="Alquiler"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xu7WwDplEemikdYbbYz9ew" name="Alquiler">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_cr8MsFViEemc15eEWpJu6A" name="id" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
+  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_F7zqUDpnEemikdYbbYz9ew" name="Grabación">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_saO4ETpnEemikdYbbYz9ew" name="alquiler" type="_xu7WwDplEemikdYbbYz9ew" aggregation="shared" association="_saNp8DpnEemikdYbbYz9ew">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_saRUUDpnEemikdYbbYz9ew"/>
@@ -31,7 +41,7 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_saNp8DpnEemikdYbbYz9ew" memberEnd="_saO4ETpnEemikdYbbYz9ew _saZ3MDpnEemikdYbbYz9ew">
+  <packagedElement xmi:type="uml:Association" xmi:id="_saNp8DpnEemikdYbbYz9ew" name="contiene" memberEnd="_saO4ETpnEemikdYbbYz9ew _saZ3MDpnEemikdYbbYz9ew">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_saORADpnEemikdYbbYz9ew" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_saO4EDpnEemikdYbbYz9ew" key="nature" value="UML_Nature"/>
     </eAnnotations>
@@ -39,12 +49,21 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_7iWGsDpnEemikdYbbYz9ew" name="DVD">
     <generalization xmi:type="uml:Generalization" xmi:id="_yych4DpoEemikdYbbYz9ew" general="_F7zqUDpnEemikdYbbYz9ew"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_TTqHUFVlEemc15eEWpJu6A" name="num. serie" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_-n47UDpnEemikdYbbYz9ew" name="Blueray">
     <generalization xmi:type="uml:Generalization" xmi:id="_zx2wcDpoEemikdYbbYz9ew" general="_F7zqUDpnEemikdYbbYz9ew"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_6hX5cFVkEemc15eEWpJu6A" name="id" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_El5K0DpoEemikdYbbYz9ew" name="VHS">
     <generalization xmi:type="uml:Generalization" xmi:id="_09O-cDpoEemikdYbbYz9ew" general="_F7zqUDpnEemikdYbbYz9ew"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_D8S7wFVlEemc15eEWpJu6A" name="fabricante" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_Ac0AIDppEemikdYbbYz9ew" name="Película">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_OqDlAENIEemaUOKiwZk7PQ" name="id">
@@ -64,22 +83,16 @@
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_r80RYDppEemikdYbbYz9ew" name="Tienda">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_1qIEMDppEemikdYbbYz9ew" name="grabación" type="_F7zqUDpnEemikdYbbYz9ew" aggregation="shared" association="_1qG2EDppEemikdYbbYz9ew">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1qIrQDppEemikdYbbYz9ew"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1qIrQTppEemikdYbbYz9ew" value="*"/>
-    </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_a5MbYENIEemaUOKiwZk7PQ" name="id">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_gxAjUENIEemaUOKiwZk7PQ" name="nombre">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
     </ownedAttribute>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_1qG2EDppEemikdYbbYz9ew" memberEnd="_1qIEMDppEemikdYbbYz9ew _1qJSUDppEemikdYbbYz9ew">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1qHdIDppEemikdYbbYz9ew" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1qHdITppEemikdYbbYz9ew" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_1qJSUDppEemikdYbbYz9ew" name="tienda" type="_r80RYDppEemikdYbbYz9ew" association="_1qG2EDppEemikdYbbYz9ew"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_aPbkoFV7EemjtdHZjkSibA" name="grabación" type="_F7zqUDpnEemikdYbbYz9ew" aggregation="composite" association="_aPUP4FV7EemjtdHZjkSibA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aPcLsFV7EemjtdHZjkSibA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aPcywFV7EemjtdHZjkSibA" value="*"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:AssociationClass" xmi:id="_hjJ5cDpqEemikdYbbYz9ew" name="Factura" memberEnd="_hjMVsTpqEemikdYbbYz9ew _hjOx8DpqEemikdYbbYz9ew">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hjLuoDpqEemikdYbbYz9ew" source="org.eclipse.papyrus">
@@ -99,5 +112,11 @@
     </ownedAttribute>
     <ownedEnd xmi:type="uml:Property" xmi:id="_hjMVsTpqEemikdYbbYz9ew" name="alquiler" type="_xu7WwDplEemikdYbbYz9ew" association="_hjJ5cDpqEemikdYbbYz9ew"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_hjOx8DpqEemikdYbbYz9ew" name="cliente" type="_fK-6cDplEemikdYbbYz9ew" association="_hjJ5cDpqEemikdYbbYz9ew"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_aPUP4FV7EemjtdHZjkSibA" name="almacena" memberEnd="_aPbkoFV7EemjtdHZjkSibA _aPdZ0FV7EemjtdHZjkSibA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aPZIYFV7EemjtdHZjkSibA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aPZvcFV7EemjtdHZjkSibA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_aPdZ0FV7EemjtdHZjkSibA" name="tienda" type="_r80RYDppEemikdYbbYz9ew" association="_aPUP4FV7EemjtdHZjkSibA"/>
   </packagedElement>
 </uml:Model>

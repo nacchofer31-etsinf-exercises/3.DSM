@@ -19,10 +19,28 @@
     </atributo>
   </clases>
   <clases nombre="Cliente"
-      padre="//@clases.0"/>
+      padre="//@clases.0">
+    <atributo
+        nombre="id socio">
+      <tipo
+          nombre="Integer"/>
+    </atributo>
+  </clases>
   <clases nombre="Empleado"
-      padre="//@clases.0"/>
-  <clases nombre="Alquiler"/>
+      padre="//@clases.0">
+    <atributo
+        nombre="puesto">
+      <tipo
+          nombre="String"/>
+    </atributo>
+  </clases>
+  <clases nombre="Alquiler">
+    <atributo
+        nombre="id">
+      <tipo
+          nombre="String"/>
+    </atributo>
+  </clases>
   <clases xsi:type="dSMP1meta:Asociacion"
       nombre="Factura">
     <atributo
@@ -30,20 +48,108 @@
       <tipo
           nombre="String"/>
     </atributo>
+    <atributo
+        nombre="Importe">
+      <tipo
+          nombre="Double"/>
+    </atributo>
+    <atributo
+        nombre="Concepto">
+      <tipo
+          nombre="String"/>
+    </atributo>
+    <atributo
+        nombre="Fecha">
+      <tipo
+          nombre="Date"/>
+    </atributo>
   </clases>
-  <clases nombre="1"/>
-  <clases nombre="2"/>
-  <clases nombre="3"/>
+  <clases nombre="Grabacion"
+      hijos="//@clases.7 //@clases.6 //@clases.8">
+    <atributo
+        nombre="Nombre">
+      <tipo
+          nombre="String"/>
+    </atributo>
+  </clases>
+  <clases nombre="DVD"
+      padre="//@clases.5">
+    <atributo
+        nombre="num. serie">
+      <tipo
+          nombre="String"/>
+    </atributo>
+  </clases>
+  <clases nombre="Blueray"
+      padre="//@clases.5">
+    <atributo
+        nombre="id">
+      <tipo
+          nombre="String"/>
+    </atributo>
+  </clases>
+  <clases nombre="VHS"
+      padre="//@clases.5">
+    <atributo
+        nombre="fabricante">
+      <tipo
+          nombre="String"/>
+    </atributo>
+  </clases>
+  <clases nombre="Pelicula">
+    <atributo
+        nombre="id">
+      <tipo
+          nombre="Integer"/>
+    </atributo>
+    <atributo
+        nombre="Nombre">
+      <tipo
+          nombre="String"/>
+    </atributo>
+  </clases>
+  <clases nombre="Tienda">
+    <atributo
+        nombre="id">
+      <tipo
+          nombre="Int"/>
+    </atributo>
+    <atributo
+        nombre="Nombre">
+      <tipo
+          nombre="String"/>
+    </atributo>
+  </clases>
   <relaciones
+      nombre="Alquila"
       origen="//@clases.1"
       destino="//@clases.3"
-      asociacion="//@clases.4"/>
+      asociacion="//@clases.4">
+    <cardinalidad
+        max="999999"/>
+    <cardinalidad
+        max="999999"/>
+  </relaciones>
   <relaciones
-      nombre="rel1"
+      xsi:type="dSMP1meta:Agregacion"
+      nombre="Contiene"
       origen="//@clases.5"
-      destino="//@clases.6"/>
+      destino="//@clases.3">
+    <cardinalidad
+        min="1"
+        max="1"/>
+    <cardinalidad
+        max="999999"/>
+  </relaciones>
   <relaciones
-      nombre="rel1"
-      origen="//@clases.5"
-      destino="//@clases.7"/>
+      xsi:type="dSMP1meta:Composicion"
+      nombre="Almacena"
+      origen="//@clases.10"
+      destino="//@clases.5">
+    <cardinalidad
+        min="1"
+        max="1"/>
+    <cardinalidad
+        max="999999"/>
+  </relaciones>
 </dSMP1meta:Proyecto>
