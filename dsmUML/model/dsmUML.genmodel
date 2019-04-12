@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/dsmUML/src" modelPluginID="dsmUML" modelName="DsmUML"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>dsmUML.ecore</foreignModel>
+  <genPackages prefix="DsmUML" disposableProviderFactory="true" ecorePackage="dsmUML.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsmUML.ecore#//Tipos">
+      <genEnumLiterals ecoreEnumLiteral="dsmUML.ecore#//Tipos/entero"/>
+      <genEnumLiterals ecoreEnumLiteral="dsmUML.ecore#//Tipos/real"/>
+      <genEnumLiterals ecoreEnumLiteral="dsmUML.ecore#//Tipos/cadena"/>
+      <genEnumLiterals ecoreEnumLiteral="dsmUML.ecore#//Tipos/boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="dsmUML.ecore#//Tipos/fecha"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsmUML.ecore#//Cardinalidad">
+      <genEnumLiterals ecoreEnumLiteral="dsmUML.ecore#//Cardinalidad/0"/>
+      <genEnumLiterals ecoreEnumLiteral="dsmUML.ecore#//Cardinalidad/1"/>
+      <genEnumLiterals ecoreEnumLiteral="dsmUML.ecore#//Cardinalidad/*"/>
+    </genEnums>
+    <genClasses ecoreClass="dsmUML.ecore#//EModelado">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsmUML.ecore#//EModelado/nombre"/>
+    </genClasses>
+    <genClasses ecoreClass="dsmUML.ecore#//Diagrama">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//Diagrama/clases"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//Diagrama/asociaciones"/>
+    </genClasses>
+    <genClasses ecoreClass="dsmUML.ecore#//Clase">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//Clase/diagrama"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsmUML.ecore#//Clase/atributos"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//Clase/super"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//Clase/sub"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//Clase/finrelacion"/>
+    </genClasses>
+    <genClasses ecoreClass="dsmUML.ecore#//Atributo">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//Atributo/clase"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsmUML.ecore#//Atributo/tipo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsmUML.ecore#//Atributo/rango"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsmUML.ecore#//Atributo/valorNulo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsmUML.ecore#//Atributo/valorUnico"/>
+    </genClasses>
+    <genClasses ecoreClass="dsmUML.ecore#//Asociacion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//Asociacion/diagrama"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//Asociacion/claseasociacion"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//Asociacion/finrelacion"/>
+    </genClasses>
+    <genClasses ecoreClass="dsmUML.ecore#//ClaseAsociacion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//ClaseAsociacion/sobre"/>
+    </genClasses>
+    <genClasses ecoreClass="dsmUML.ecore#//FinRelacion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//FinRelacion/clase"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsmUML.ecore#//FinRelacion/asociacion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsmUML.ecore#//FinRelacion/rol"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsmUML.ecore#//FinRelacion/minCard"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsmUML.ecore#//FinRelacion/maxCard"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsmUML.ecore#//FinRelacion/esAgregado"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

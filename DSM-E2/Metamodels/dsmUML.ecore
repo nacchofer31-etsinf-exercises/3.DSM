@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dsmUML" nsURI="dsmUML" nsPrefix="dsmUML">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="EModelado">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Diagrama" eSuperTypes="#//EModelado">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nombreClaseUnico"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nombreClaseUnico" value="&#xA;&#x9;&#x9;&#x9;self.clases->isUnique(nombre)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clases" upperBound="-1"
+        eType="#//Clase" containment="true" eOpposite="#//Clase/diagrama"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="asociaciones" upperBound="-1"
+        eType="#//Asociacion" containment="true" eOpposite="#//Asociacion/diagrama"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Clase" eSuperTypes="#//EModelado">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nombreAtributoeUnico herenciaSimple agregadoCorrecto"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nombreAtributoeUnico" value="&#xA;&#x9;&#x9;&#x9;self.atributos->isUnique(nombre)"/>
+      <details key="herenciaSimple" value="&#xA;&#x9;        self.sub->collect(c|c.sub)->excludes(self)"/>
+      <details key="agregadoCorrecto" value="&#xA;&#x9;&#x9;      ( self.finrelacion->first().esAgregado implies self.finrelacion->last().esAgregado=false and self.finrelacion->first().maxCard =_'1')&#xA;&#x9;&#x9;      and ( self.finrelacion->last().esAgregado implies self.finrelacion->first().esAgregado=false and self.finrelacion->last().maxCard =_'1')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diagrama" lowerBound="1"
+        eType="#//Diagrama" eOpposite="#//Diagrama/clases"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="atributos" upperBound="-1"
+        eType="#//Atributo" containment="true" eOpposite="#//Atributo/clase"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="super" eType="#//Clase"
+        eOpposite="#//Clase/sub"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sub" upperBound="-1" eType="#//Clase"
+        eOpposite="#//Clase/super"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="finrelacion" upperBound="-1"
+        eType="#//FinRelacion" eOpposite="#//FinRelacion/clase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Atributo" eSuperTypes="#//EModelado">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clase" eType="#//Clase"
+        eOpposite="#//Clase/atributos"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" eType="#//Tipos"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rango" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valorNulo" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valorUnico" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Asociacion" eSuperTypes="#//EModelado">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="cardianlidades"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diagrama" lowerBound="1"
+        eType="#//Diagrama" eOpposite="#//Diagrama/asociaciones"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="claseasociacion" eType="#//ClaseAsociacion"
+        eOpposite="#//ClaseAsociacion/sobre"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="finrelacion" lowerBound="2"
+        upperBound="2" eType="#//FinRelacion" containment="true" eOpposite="#//FinRelacion/asociacion"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClaseAsociacion" eSuperTypes="#//Clase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sobre" lowerBound="1" eType="#//Asociacion"
+        eOpposite="#//Asociacion/claseasociacion"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinRelacion">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="cardinalidadMinima cardinalidadMaxima"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="cardinalidadMinima" value="&#xA;&#x9;&#x9;  self.minCard= Cardinalidad::_'0' or self.minCard= Cardinalidad::_'1' "/>
+      <details key="cardinalidadMaxima" value="&#xA;&#x9;&#x9;  self.maxCard= Cardinalidad::_'1' or self.maxCard= Cardinalidad::_'*' "/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clase" lowerBound="1" eType="#//Clase"
+        eOpposite="#//Clase/finrelacion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="asociacion" lowerBound="1"
+        eType="#//Asociacion" eOpposite="#//Asociacion/finrelacion"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minCard" lowerBound="1"
+        eType="#//Cardinalidad"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxCard" lowerBound="1"
+        eType="#//Cardinalidad"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="esAgregado" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Tipos">
+    <eLiterals name="entero"/>
+    <eLiterals name="real" value="1"/>
+    <eLiterals name="cadena" value="2"/>
+    <eLiterals name="boolean" value="3"/>
+    <eLiterals name="fecha" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Cardinalidad">
+    <eLiterals name="0"/>
+    <eLiterals name="1" value="1"/>
+    <eLiterals name="*" value="2"/>
+  </eClassifiers>
+</ecore:EPackage>

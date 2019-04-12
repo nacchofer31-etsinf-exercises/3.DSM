@@ -1,0 +1,5 @@
+-- @nsURI UMLMM=dsmUML
+
+module UMLRefinement;
+create OUT : UMLMM refining IN : UMLMM;
+

@@ -1,0 +1,5 @@
+-- @nsURI UMLMM=http://myumlclassdiagram/1.0
+
+module UMLRefinement;
+create OUT : UMLMM refining IN : UMLMM;
+
