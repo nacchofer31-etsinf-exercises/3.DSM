@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<dsmUML:Diagrama xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dsmUML="dsmUML" xsi:schemaLocation="dsmUML dsmUML.ecore" nombre="Videoclub">
+  <clases nombre="Persona" sub="//@clases.1 //@clases.2">
+    <atributos nombre="nombre" tipo="cadena"/>
+    <atributos nombre="dni" tipo="cadena" valorUnico="true"/>
+  </clases>
+  <clases nombre="Empleado" super="//@clases.0">
+    <atributos nombre="puesto"/>
+  </clases>
+  <clases nombre="Cliente" super="//@clases.0" finrelacion="//@asociaciones.0/@finrelacion.1">
+    <atributos nombre="id_socio" valorUnico="true"/>
+  </clases>
+  <clases nombre="Alquiler" finrelacion="//@asociaciones.0/@finrelacion.0 //@asociaciones.3/@finrelacion.1">
+    <atributos nombre="id" valorUnico="true"/>
+  </clases>
+  <clases xsi:type="dsmUML:ClaseAsociacion" nombre="Alquila" sobre="//@asociaciones.0">
+    <atributos nombre="id" tipo="cadena" valorUnico="true"/>
+    <atributos nombre="importe" tipo="real"/>
+    <atributos nombre="concepto" tipo="cadena"/>
+    <atributos nombre="fecha" tipo="fecha"/>
+  </clases>
+  <clases nombre="Grabacion" sub="//@clases.6 //@clases.7 //@clases.8" finrelacion="//@asociaciones.1/@finrelacion.1 //@asociaciones.2/@finrelacion.0 //@asociaciones.3/@finrelacion.0">
+    <atributos nombre="nombre" tipo="cadena"/>
+  </clases>
+  <clases nombre="DVD" super="//@clases.5">
+    <atributos nombre="num_serie" tipo="cadena" valorUnico="true"/>
+  </clases>
+  <clases nombre="VHS" super="//@clases.5">
+    <atributos nombre="fabricante" tipo="cadena"/>
+  </clases>
+  <clases nombre="Blu-Ray" super="//@clases.5">
+    <atributos nombre="id" tipo="cadena" valorUnico="true"/>
+  </clases>
+  <clases nombre="Tienda" finrelacion="//@asociaciones.1/@finrelacion.0">
+    <atributos nombre="id" valorUnico="true"/>
+    <atributos nombre="nombre" tipo="cadena"/>
+  </clases>
+  <clases nombre="Pelicula" finrelacion="//@asociaciones.2/@finrelacion.1">
+    <atributos nombre="id" valorUnico="true"/>
+    <atributos nombre="nombre" tipo="cadena"/>
+  </clases>
+  <asociaciones nombre="Se_alquila" claseasociacion="//@clases.4">
+    <finrelacion clase="//@clases.3" rol="origen_Se_alquila" minCard="1" maxCard="1"/>
+    <finrelacion clase="//@clases.2" rol="destino_Se_alquila" maxCard="*"/>
+  </asociaciones>
+  <asociaciones nombre="almacena">
+    <finrelacion clase="//@clases.9" rol="origen_almacena" minCard="1" maxCard="1"/>
+    <finrelacion clase="//@clases.5" rol="destino_almacena" maxCard="*"/>
+  </asociaciones>
+  <asociaciones nombre="grabacion">
+    <finrelacion clase="//@clases.5" rol="origen_grabacion" minCard="1" maxCard="1"/>
+    <finrelacion clase="//@clases.10" rol="destino_grabacion" maxCard="*"/>
+  </asociaciones>
+  <asociaciones nombre="contiene">
+    <finrelacion clase="//@clases.5" rol="origen_contiene" maxCard="*"/>
+    <finrelacion clase="//@clases.3" rol="destino_contiene" minCard="1" maxCard="1"/>
+  </asociaciones>
+</dsmUML:Diagrama>

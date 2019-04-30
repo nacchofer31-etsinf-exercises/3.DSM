@@ -26,12 +26,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Clase" eSuperTypes="#//EModelado">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="nombreAtributoeUnico herenciaSimple agregadoCorrecto"/>
+      <details key="constraints" value="nombreAtributoeUnico herenciaSimple"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="nombreAtributoeUnico" value="&#xA;&#x9;&#x9;&#x9;self.atributos->isUnique(nombre)"/>
       <details key="herenciaSimple" value="&#xA;&#x9;        self.sub->collect(c|c.sub)->excludes(self)"/>
-      <details key="agregadoCorrecto" value="&#xA;&#x9;&#x9;      ( self.finrelacion->first().esAgregado implies self.finrelacion->last().esAgregado=false and self.finrelacion->first().maxCard =_'1')&#xA;&#x9;&#x9;      and ( self.finrelacion->last().esAgregado implies self.finrelacion->first().esAgregado=false and self.finrelacion->last().maxCard =_'1')"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="diagrama" lowerBound="1"
         eType="#//Diagrama" eOpposite="#//Diagrama/clases"/>

@@ -1,5 +1,14 @@
--- @nsURI UMLMM=http://myumlclassdiagram/1.0
+-- @path MM=/DSM-E2/Metamodels/dsmUML.ecore
 
 module UMLRefinement;
-create OUT : UMLMM refining IN : UMLMM;
+create OUT : MM refining IN : MM;
 
+rule Persona2Table {
+	from diagrama : MM!Videoclub
+	to 
+	
+	c_diagrama : MM!Class(
+		nombre <- diagrama.nombre
+	)
+	
+}
