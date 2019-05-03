@@ -1,0 +1,39 @@
+-- @nsURI MM=dsmUML
+-- @nsURI MM1=MyER
+
+
+module UMLER;
+create OUT : MM1 from IN : MM;
+
+rule Class2Table{
+from
+	c : MM!Clase
+to
+	t : MM1!Tabla (
+		
+		Nombre <- c.nombre,
+		columnas <- c.atributos -> collect(e|thisModule.getAttributes(e)) -> append(pk)
+		
+		
+	),
+	
+	pk : MM1!Columna(
+		
+		Nombre <- 'ID_' + c.nombre,
+		Tipo <- #integer,
+		EsPrimaria <- true
+	) 
+	
+}
+
+lazy rule getAttributes {
+	from
+	a: MM!Atributo
+	to
+	t : MM1!Columna ( 
+		Nombre <- a.nombre
+	)
+}
+
+
+
