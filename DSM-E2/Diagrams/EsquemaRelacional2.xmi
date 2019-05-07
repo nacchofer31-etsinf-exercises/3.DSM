@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<MyER:Esquema xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:MyER="MyER" Nombre="Videoclub">
+  <Tablas Nombre="Persona"/>
+  <Tablas Nombre="Empleado"/>
+  <Tablas Nombre="Cliente"/>
+  <Tablas Nombre="Alquiler"/>
+  <Tablas Nombre="Alquila"/>
+  <Tablas Nombre="Grabacion"/>
+  <Tablas Nombre="DVD"/>
+  <Tablas Nombre="VHS"/>
+  <Tablas Nombre="Blu-Ray"/>
+  <Tablas Nombre="Tienda"/>
+  <Tablas Nombre="Pelicula"/>
+</MyER:Esquema>

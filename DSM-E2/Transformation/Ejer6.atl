@@ -1,0 +1,109 @@
+-- @path uml=/DSM-E2/Metamodels/dsmUML.ecore
+-- @path er=/DSM-E2/Metamodels/MyER.ecore
+
+module Ejer6;
+create OUT : ER from IN : UML;
+
+rule Diagrama2Esquema {
+	from
+		d : UML!Diagrama
+	to 
+		e : ER!Esquema (
+			Nombre <- d.nombre,
+			Tablas <- d.clases,
+			clavesAjenas <- d.asociaciones
+		)
+}
+
+rule Clase2Tabla {
+	from
+		c : UML!Clase
+	to 
+		t : ER!Tabla (
+			Nombre <- c.nombre,
+			columnas <- col,
+			columnas <- c.atributos
+		),
+		col : ER!Columna (
+			Nombre <- 'ID_' + c.nombre,
+			EsPrimaria <- true,
+			Tipo <- #integer
+		)
+}
+
+rule Atributo2Columna {
+	from 
+		a : UML!Atributo
+	to	
+		col : ER!Columna (
+			Nombre <- a.nombre,
+			EsPrimaria <- false,
+			Tipo <- if (a.tipo.toString() = 'entero')
+				    then #integer 
+				    else if (a.tipo.toString() = 'real') 
+					     then #double 
+				         else #string 
+					     endif
+				    endif
+		)
+}
+
+rule Asociacion2FK { -- De 1 a 1 o de 1 a N
+	from 
+		a : UML!Asociacion (a.max1 = 1)
+	to 
+		fk : ER!ClaveAjena (
+			Nombre <- 'FK_de_' + a.rol2 + '_a_' + a.rol1,
+			columna <- fk_columna,
+			
+			columnaReferenciada <- thisModule.resolveTemp(a.clase1, 'col')
+		),
+		fk_columna : ER!Columna (
+			Nombre <- 'ID_FK__' + a.rol1,
+			tabla <- a.clase2
+		)
+}
+
+rule Asociacion2FK2 { -- De N a 1
+	from 
+		a : UML!Asociacion (a.max2 = 1 and a.max1 > 1)
+	to 
+		fk : ER!ClaveAjena (
+			Nombre <- 'FK_de_' + a.rol1 + '_a_' + a.rol2,
+			columna <- fk_columna,
+			columnaReferenciada <- thisModule.resolveTemp(a.clase2, 'col')
+		),
+		fk_columna : ER!Columna (
+			Nombre <- 'ID_FK_' + a.rol2,
+			tabla <- a.clase1
+		)
+}
+
+rule Asociacion2FK3 { -- De N a N
+	from
+		a : UML!Asociacion (a.max1 > 1 and a.max2 > 1)
+	to 
+		fk_1 : ER!ClaveAjena (
+			Nombre <- 'FK_de_' + a.rol1 + '_a_' + a.rol2,
+			columna <- fk_columna_1,
+			columnaReferenciada <- thisModule.resolveTemp(a.clase2, 'col')
+		),
+		fk_2 : ER!ClaveAjena (
+			Nombre <- 'FK_de_' + a.rol2 + '_a_' + a.rol1,
+			columna <- fk_columna_2,
+			columnaReferenciada <- thisModule.resolveTemp(a.clase1, 'col'),
+			esquema <- fk_1.esquema
+		),
+		fk_columna_1 : ER!Columna (
+			Nombre <- 'ID_FK_' + a.rol2,
+			tabla <- t
+		),
+		fk_columna_2 : ER!Columna (
+			Nombre <- 'ID_FK_' + a.rol1,
+			tabla <- t
+		),
+		t : ER!Tabla (
+			Nombre <- a.rol1 + '_' + a.rol2,
+			Padre <- fk_1.esquema
+		)
+}

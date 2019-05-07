@@ -1,0 +1,24 @@
+-- @path UML=/DSM-E2/Metamodels/dsmUML.ecore
+-- @path ER=/DSM-E2/Metamodels/MyER.ecore
+
+module Ejer2;
+create OUT : ER from IN : UML;
+
+rule Diagrama2Esquema {
+	from
+		d : UML!Diagrama
+	to 
+		e : ER!Esquema (
+			Nombre <- d.nombre,
+			Tablas <- d.clases
+		)
+}
+
+rule Clase2Tabla {
+	from
+		c : UML!Clase
+	to 
+		t : ER!Tabla (
+			Nombre <- c.nombre
+		)
+}

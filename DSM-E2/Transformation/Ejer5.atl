@@ -1,0 +1,48 @@
+-- @path uml=/DSM-E2/Metamodels/dsmUML.ecore
+-- @path er=/DSM-E2/Metamodels/MyER.ecore
+
+module Ejer5;
+create OUT : ER from IN : UML;
+
+rule Diagrama2Esquema {
+	from
+		d : UML!Diagrama
+	to 
+		e : ER!Esquema (
+			Nombre <- d.nombre,
+			Tablas <- d.clases
+		)
+}
+
+rule Clase2Tabla {
+	from
+		c : UML!Clase
+	to 
+		t : ER!Tabla (
+			Nombre <- c.nombre,
+			columnas <- col,
+			columnas <- c.atributos
+		),
+		col : ER!Columna (
+			Nombre <- 'ID_' + c.nombre,
+			EsPrimaria <- true,
+			Tipo <- #integer	
+		)
+}
+
+rule Atributo2Columna {
+	from 
+		a : UML!Atributo
+	to	
+		col : ER!Columna (
+			Nombre <- a.nombre,
+			EsPrimaria <- false,
+			Tipo <- if (a.tipo.toString() = 'entero') 
+				    then #integer 
+				    else if (a.tipo.toString() = 'real') 
+					     then #double 
+				         else #string 
+					     endif
+				    endif
+		)
+}

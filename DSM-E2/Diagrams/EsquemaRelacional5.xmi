@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<MyER:Esquema xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:MyER="MyER" Nombre="Videoclub">
+  <Tablas Nombre="Persona">
+    <columnas Nombre="id_Persona" EsPrimaria="true"/>
+    <columnas Nombre="nombre" Tipo="string"/>
+    <columnas Nombre="dni" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="Empleado">
+    <columnas Nombre="id_Empleado" EsPrimaria="true"/>
+    <columnas Nombre="puesto"/>
+  </Tablas>
+  <Tablas Nombre="Cliente">
+    <columnas Nombre="id_Cliente" EsPrimaria="true"/>
+    <columnas Nombre="id_socio"/>
+  </Tablas>
+  <Tablas Nombre="Alquiler">
+    <columnas Nombre="id_Alquiler" EsPrimaria="true"/>
+    <columnas Nombre="id"/>
+  </Tablas>
+  <Tablas Nombre="Alquila">
+    <columnas Nombre="id_Alquila" EsPrimaria="true"/>
+    <columnas Nombre="id" Tipo="string"/>
+    <columnas Nombre="importe" Tipo="double"/>
+    <columnas Nombre="concepto" Tipo="string"/>
+    <columnas Nombre="fecha" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="Grabacion">
+    <columnas Nombre="id_Grabacion" EsPrimaria="true"/>
+    <columnas Nombre="nombre" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="DVD">
+    <columnas Nombre="id_DVD" EsPrimaria="true"/>
+    <columnas Nombre="num_serie" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="VHS">
+    <columnas Nombre="id_VHS" EsPrimaria="true"/>
+    <columnas Nombre="fabricante" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="Blu-Ray">
+    <columnas Nombre="id_Blu-Ray" EsPrimaria="true"/>
+    <columnas Nombre="id" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="Tienda">
+    <columnas Nombre="id_Tienda" EsPrimaria="true"/>
+    <columnas Nombre="id"/>
+    <columnas Nombre="nombre" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="Pelicula">
+    <columnas Nombre="id_Pelicula" EsPrimaria="true"/>
+    <columnas Nombre="id"/>
+    <columnas Nombre="nombre" Tipo="string"/>
+  </Tablas>
+</MyER:Esquema>
