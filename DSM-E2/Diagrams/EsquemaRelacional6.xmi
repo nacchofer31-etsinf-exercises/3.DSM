@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<MyER:Esquema xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:MyER="MyER" Nombre="Videoclub">
+  <Tablas Nombre="Persona">
+    <columnas Nombre="ID_Persona" EsPrimaria="true"/>
+    <columnas Nombre="nombre" Tipo="string"/>
+    <columnas Nombre="dni" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="Empleado">
+    <columnas Nombre="ID_Empleado" EsPrimaria="true"/>
+    <columnas Nombre="puesto"/>
+  </Tablas>
+  <Tablas Nombre="Cliente">
+    <columnas Nombre="ID_Cliente" EsPrimaria="true"/>
+    <columnas Nombre="id_socio"/>
+    <columnas Nombre="ID_FK_origen_Se_alquila" clavesAjena="//@clavesAjenas.0"/>
+  </Tablas>
+  <Tablas Nombre="Alquiler">
+    <columnas Nombre="ID_Alquiler" EsPrimaria="true" enClaveAjena="//@clavesAjenas.0 //@clavesAjenas.3"/>
+    <columnas Nombre="id"/>
+  </Tablas>
+  <Tablas Nombre="Alquila">
+    <columnas Nombre="ID_Alquila" EsPrimaria="true"/>
+    <columnas Nombre="id" Tipo="string"/>
+    <columnas Nombre="importe" Tipo="double"/>
+    <columnas Nombre="concepto" Tipo="string"/>
+    <columnas Nombre="fecha" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="Grabacion">
+    <columnas Nombre="ID_Grabacion" EsPrimaria="true" enClaveAjena="//@clavesAjenas.2"/>
+    <columnas Nombre="nombre" Tipo="string"/>
+    <columnas Nombre="ID_FK_origen_almacena" clavesAjena="//@clavesAjenas.1"/>
+    <columnas Nombre="ID_FK_destino_contiene" clavesAjena="//@clavesAjenas.3"/>
+  </Tablas>
+  <Tablas Nombre="DVD">
+    <columnas Nombre="ID_DVD" EsPrimaria="true"/>
+    <columnas Nombre="num_serie" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="VHS">
+    <columnas Nombre="ID_VHS" EsPrimaria="true"/>
+    <columnas Nombre="fabricante" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="Blu-Ray">
+    <columnas Nombre="ID_Blu-Ray" EsPrimaria="true"/>
+    <columnas Nombre="id" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="Tienda">
+    <columnas Nombre="ID_Tienda" EsPrimaria="true" enClaveAjena="//@clavesAjenas.1"/>
+    <columnas Nombre="id"/>
+    <columnas Nombre="nombre" Tipo="string"/>
+  </Tablas>
+  <Tablas Nombre="Pelicula">
+    <columnas Nombre="ID_Pelicula" EsPrimaria="true"/>
+    <columnas Nombre="id"/>
+    <columnas Nombre="nombre" Tipo="string"/>
+    <columnas Nombre="ID_FK_origen_grabacion" clavesAjena="//@clavesAjenas.2"/>
+  </Tablas>
+  <clavesAjenas columna="//@Tablas.2/@columnas.2" columnaReferenciada="//@Tablas.3/@columnas.0" Nombre="ca_de_destino_Se_alquila_a_origen_Se_alquila"/>
+  <clavesAjenas columna="//@Tablas.5/@columnas.2" columnaReferenciada="//@Tablas.9/@columnas.0" Nombre="ca_de_destino_almacena_a_origen_almacena"/>
+  <clavesAjenas columna="//@Tablas.10/@columnas.3" columnaReferenciada="//@Tablas.5/@columnas.0" Nombre="ca_de_destino_grabacion_a_origen_grabacion"/>
+  <clavesAjenas columna="//@Tablas.5/@columnas.3" columnaReferenciada="//@Tablas.3/@columnas.0" Nombre="ca_de_origen_contiene_a_destino_contiene"/>
+</MyER:Esquema>

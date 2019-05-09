@@ -1,7 +1,7 @@
 -- @path uml=/DSM-E2/Metamodels/dsmUML.ecore
 -- @path er=/DSM-E2/Metamodels/MyER.ecore
 
-module Ejer6;
+module Ejer7;
 create OUT : ER from IN : UML;
 
 rule Diagrama2Esquema {
@@ -31,6 +31,35 @@ rule Clase2Tabla {
 		)
 }
 
+rule clasehija2table {
+	from
+		c : UML!Clase (not c.super.oclIsUndefined())
+	to 
+		t : ER!Tabla (
+			Nombre <- c.nombre,
+			columnas <- col,
+			columnas <- c.atributos
+		),
+		col : ER!Columna (
+			Nombre <- 'id_' + c.nombre,
+			EsPrimaria <- true,
+			Tipo <- #integer,
+			enClaveAjena <- fk
+		),
+		fk : ER!ClaveAjena (
+			Nombre <- 'ca_de_' + c.nombre + '_a_' + c.super.nombre,
+			columna <- fk_col,
+
+			columnaReferenciada <- thisModule.resolveTemp(c.super, 'col'),
+			esquema <- t.Padre
+		),
+		fk_col : ER!Columna (
+			Nombre <- 'id_fk_' + c.super.nombre,
+			tabla <- t
+		)
+}
+
+
 rule Atributo2Columna {
 	from 
 		a : UML!Atributo
@@ -50,7 +79,7 @@ rule Atributo2Columna {
 
 rule Asociacion2FK { -- De 1 a 1 o de 1 a N
 	from 
-		a : UML!Asociacion (a.finrelacion.first().maxCard.toString() = '1')
+		a : UML!Asociacion (a.finrelacion.first().maxCard = 1)
 	to 
 		fk : ER!ClaveAjena (
 			Nombre  <- 'ca_de_' + a.finrelacion.last().rol + '_a_' + a.finrelacion.first().rol,
@@ -66,7 +95,7 @@ rule Asociacion2FK { -- De 1 a 1 o de 1 a N
 
 rule Asociacion2FK2 { -- De N a 1
 	from 
-		a : UML!Asociacion (a.finrelacion.last().maxCard.toString() = '1' and a.finrelacion.first().maxCard.toString() = '*')
+		a : UML!Asociacion (a.finrelacion.last().maxCard = 1 and a.finrelacion.first().maxCard = 2)
 	to 
 		fk : ER!ClaveAjena (
 			Nombre <- 'ca_de_' + a.finrelacion.first().rol + '_a_' + a.finrelacion.last().rol,
@@ -81,7 +110,7 @@ rule Asociacion2FK2 { -- De N a 1
 
 rule Asociacion2FK3 { -- De N a N
 	from
-		a : UML!Asociacion (a.finrelacion.first().maxCard.toString() = '*' and a.finrelacion.last().maxCard.toString() = '*')
+		a : UML!Asociacion (a.finrelacion.first().maxCard = 2 and a.finrelacion.last().maxCard = 2)
 	to 
 		fk_1 : ER!ClaveAjena (
 			Nombre <- 'ca_de_' + a.finrelacion.first().rol + '_a_' + a.finrelacion.last().rol,
