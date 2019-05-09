@@ -1,7 +1,7 @@
 -- @path uml=/DSM-E2/Metamodels/dsmUML.ecore
 -- @path er=/DSM-E2/Metamodels/MyER.ecore
 
-module Ejer6;
+module Ejer8;
 create OUT : ER from IN : UML;
 
 rule Diagrama2Esquema {
@@ -17,7 +17,7 @@ rule Diagrama2Esquema {
 
 rule Clase2Tabla {
 	from
-		c : UML!Clase
+		c : UML!Clase (c.csuper.oclIsUndefined())
 	to 
 		t : ER!Tabla (
 			Nombre <- c.nombre,
@@ -28,6 +28,34 @@ rule Clase2Tabla {
 			Nombre <- 'ID_' + c.nombre,
 			EsPrimaria <- true,
 			Tipo <- #integer
+		)
+}
+
+rule ClaseHija2Tabla {
+	from
+		c : UML!Clase (not c.csuper.oclIsUndefined())
+	to 
+		t : ER!Tabla (
+			Nombre <- c.nombre,
+			columnas <- col,
+			columnas <- c.atributos
+		),
+		col : ER!Columna (
+			Nombre <- 'ID_' + c.nombre,
+			EsPrimaria <- true,
+			Tipo <- #integer,
+			enClaveAjena <- fk
+		),
+		fk : ER!ClaveAjena (
+			Nombre <- 'FK_de_' + c.nombre + '_a_' + c.csuper.nombre,
+			columna <- fk_col,
+
+			columnaReferenciada <- thisModule.resolveTemp(c.csuper, 'col'),
+			esquema <- t.Padre
+		),
+		fk_col : ER!Columna (
+			Nombre <- 'id_fk_' + c.csuper.nombre,
+			tabla <- t
 		)
 }
 
@@ -48,9 +76,10 @@ rule Atributo2Columna {
 		)
 }
 
+
 rule Asociacion2FK { -- De 1 a 1 o de 1 a N
 	from 
-		a : UML!Asociacion (a.finrelacion.first().maxCard.toString() = '1')
+		a : UML!Asociacion (a.finrelacion.first().maxCard.toString() = '1' and a.claseasociacion.oclIsUndefined())
 	to 
 		fk : ER!ClaveAjena (
 			Nombre  <- 'FK_de_' + a.finrelacion.last().rol + '_a_' + a.finrelacion.first().rol,
@@ -66,7 +95,8 @@ rule Asociacion2FK { -- De 1 a 1 o de 1 a N
 
 rule Asociacion2FK2 { -- De N a 1
 	from 
-		a : UML!Asociacion (a.finrelacion.last().maxCard.toString() = '1' and a.finrelacion.first().maxCard.toString() = '*')
+		a : UML!Asociacion (a.finrelacion.last().maxCard.toString() = '1' and a.finrelacion.first().maxCard.toString() = '*'
+			and a.claseasociacion.oclIsUndefined())
 	to 
 		fk : ER!ClaveAjena (
 			Nombre <- 'FK_de_' + a.finrelacion.first().rol + '_a_' + a.finrelacion.last().rol,
@@ -81,7 +111,8 @@ rule Asociacion2FK2 { -- De N a 1
 
 rule Asociacion2FK3 { -- De N a N
 	from
-		a : UML!Asociacion (a.finrelacion.first().maxCard.toString() = '*' and a.finrelacion.last().maxCard.toString() = '*')
+		a : UML!Asociacion (a.finrelacion.first().maxCard.toString() = '*' and a.finrelacion.last().maxCard.toString() = '*'
+			and a.claseasociacion.oclIsUndefined())
 	to 
 		fk_1 : ER!ClaveAjena (
 			Nombre <- 'FK_de_' + a.finrelacion.first().rol + '_a_' + a.finrelacion.last().rol,
@@ -105,5 +136,27 @@ rule Asociacion2FK3 { -- De N a N
 		t : ER!Tabla (
 			Nombre <- a.finrelacion.first().rol + '_' + a.finrelacion.last().rol,
 			Padre <- fk_1.esquema
+		)
+}
+
+rule Asociacion2FK4 {
+	from
+		a : UML!Asociacion (not a.claseasociacion.oclIsUndefined())
+	to 
+		fk_1 : ER!ClaveAjena (
+			Nombre <- 'FK_de_' + a.claseasociacion.nombre + '_a_' + a.finrelacion.first().rol,
+			columnaReferenciada <- thisModule.resolveTemp(a.finrelacion.first().clase, 'col'),
+			columna <- fk_columna_1
+		), fk_2 : ER!ClaveAjena (
+			Nombre <- 'FK_de_' + a.claseasociacion.nombre + '_a_' + a.finrelacion.last().rol,
+			columnaReferenciada <- thisModule.resolveTemp(a.finrelacion.last().clase, 'col'),
+			columna <- fk_columna_2,
+			esquema <- fk_1.esquema
+		),fk_columna_1 : ER!Columna (
+			Nombre <- 'ID_FK_' + a.finrelacion.first().rol,
+			tabla <- a.claseasociacion
+		), fk_columna_2 : ER!Columna (
+			Nombre <- 'ID_FK_' + a.finrelacion.last().rol,
+			tabla <- a.claseasociacion
 		)
 }

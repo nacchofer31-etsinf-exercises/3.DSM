@@ -47,7 +47,7 @@ rule ClaseHija2Tabla {
 			enClaveAjena <- fk
 		),
 		fk : ER!ClaveAjena (
-			Nombre <- 'ca_de_' + c.nombre + '_a_' + c.csuper.nombre,
+			Nombre <- 'FK_de_' + c.nombre + '_a_' + c.csuper.nombre,
 			columna <- fk_col,
 
 			columnaReferenciada <- thisModule.resolveTemp(c.csuper, 'col'),
@@ -82,7 +82,7 @@ rule Asociacion2FK { -- De 1 a 1 o de 1 a N
 		a : UML!Asociacion (a.finrelacion.first().maxCard.toString() = '1')
 	to 
 		fk : ER!ClaveAjena (
-			Nombre  <- 'ca_de_' + a.finrelacion.last().rol + '_a_' + a.finrelacion.first().rol,
+			Nombre  <- 'FK_de_' + a.finrelacion.last().rol + '_a_' + a.finrelacion.first().rol,
 			columna <- fk_columna,
 			
 			columnaReferenciada <- thisModule.resolveTemp(a.finrelacion.first().clase, 'col')
@@ -98,7 +98,7 @@ rule Asociacion2FK2 { -- De N a 1
 		a : UML!Asociacion (a.finrelacion.last().maxCard.toString() = '1' and a.finrelacion.first().maxCard.toString() = '*')
 	to 
 		fk : ER!ClaveAjena (
-			Nombre <- 'ca_de_' + a.finrelacion.first().rol + '_a_' + a.finrelacion.last().rol,
+			Nombre <- 'FK_de_' + a.finrelacion.first().rol + '_a_' + a.finrelacion.last().rol,
 			columna <- fk_columna,
 			columnaReferenciada <- thisModule.resolveTemp(a.finrelacion.last().clase, 'col')
 		),
@@ -113,12 +113,12 @@ rule Asociacion2FK3 { -- De N a N
 		a : UML!Asociacion (a.finrelacion.first().maxCard.toString() = '*' and a.finrelacion.last().maxCard.toString() = '*')
 	to 
 		fk_1 : ER!ClaveAjena (
-			Nombre <- 'ca_de_' + a.finrelacion.first().rol + '_a_' + a.finrelacion.last().rol,
+			Nombre <- 'FK_de_' + a.finrelacion.first().rol + '_a_' + a.finrelacion.last().rol,
 			columna <- fk_columna_1,
 			columnaReferenciada <- thisModule.resolveTemp(a.finrelacion.last().clase, 'col')
 		),
 		fk_2 : ER!ClaveAjena (
-			Nombre <- 'ca_de_' + a.finrelacion.last().rol + '_a_' + a.finrelacion.first().rol,
+			Nombre <- 'FK_de_' + a.finrelacion.last().rol + '_a_' + a.finrelacion.first().rol,
 			columna <- fk_columna_2,
 			columnaReferenciada <- thisModule.resolveTemp(a.finrelacion.first().clase, 'col'),
 			esquema <- fk_1.esquema

@@ -59,13 +59,13 @@
     <columnas Nombre="nombre" Tipo="string"/>
     <columnas Nombre="ID_FK_origen_grabacion" clavesAjena="//@clavesAjenas.2"/>
   </Tablas>
-  <clavesAjenas columna="//@Tablas.2/@columnas.3" columnaReferenciada="//@Tablas.3/@columnas.0" Nombre="ca_de_destino_Se_alquila_a_origen_Se_alquila"/>
-  <clavesAjenas columna="//@Tablas.5/@columnas.2" columnaReferenciada="//@Tablas.9/@columnas.0" Nombre="ca_de_destino_almacena_a_origen_almacena"/>
-  <clavesAjenas columna="//@Tablas.10/@columnas.3" columnaReferenciada="//@Tablas.5/@columnas.0" Nombre="ca_de_destino_grabacion_a_origen_grabacion"/>
-  <clavesAjenas columna="//@Tablas.5/@columnas.3" columnaReferenciada="//@Tablas.3/@columnas.0" Nombre="ca_de_origen_contiene_a_destino_contiene"/>
-  <clavesAjenas columna="//@Tablas.1/@columnas.2" columnaReferenciada="//@Tablas.0/@columnas.0" Nombre="ca_de_Empleado_a_Persona"/>
-  <clavesAjenas columna="//@Tablas.2/@columnas.2" columnaReferenciada="//@Tablas.0/@columnas.0" Nombre="ca_de_Cliente_a_Persona"/>
-  <clavesAjenas columna="//@Tablas.6/@columnas.2" columnaReferenciada="//@Tablas.5/@columnas.0" Nombre="ca_de_DVD_a_Grabacion"/>
-  <clavesAjenas columna="//@Tablas.7/@columnas.2" columnaReferenciada="//@Tablas.5/@columnas.0" Nombre="ca_de_VHS_a_Grabacion"/>
-  <clavesAjenas columna="//@Tablas.8/@columnas.2" columnaReferenciada="//@Tablas.5/@columnas.0" Nombre="ca_de_Blu-Ray_a_Grabacion"/>
+  <clavesAjenas columna="//@Tablas.2/@columnas.3" columnaReferenciada="//@Tablas.3/@columnas.0" Nombre="FK_de_destino_Se_alquila_a_origen_Se_alquila"/>
+  <clavesAjenas columna="//@Tablas.5/@columnas.2" columnaReferenciada="//@Tablas.9/@columnas.0" Nombre="FK_de_destino_almacena_a_origen_almacena"/>
+  <clavesAjenas columna="//@Tablas.10/@columnas.3" columnaReferenciada="//@Tablas.5/@columnas.0" Nombre="FK_de_destino_grabacion_a_origen_grabacion"/>
+  <clavesAjenas columna="//@Tablas.5/@columnas.3" columnaReferenciada="//@Tablas.3/@columnas.0" Nombre="FK_de_origen_contiene_a_destino_contiene"/>
+  <clavesAjenas columna="//@Tablas.1/@columnas.2" columnaReferenciada="//@Tablas.0/@columnas.0" Nombre="FK_de_Empleado_a_Persona"/>
+  <clavesAjenas columna="//@Tablas.2/@columnas.2" columnaReferenciada="//@Tablas.0/@columnas.0" Nombre="FK_de_Cliente_a_Persona"/>
+  <clavesAjenas columna="//@Tablas.6/@columnas.2" columnaReferenciada="//@Tablas.5/@columnas.0" Nombre="FK_de_DVD_a_Grabacion"/>
+  <clavesAjenas columna="//@Tablas.7/@columnas.2" columnaReferenciada="//@Tablas.5/@columnas.0" Nombre="FK_de_VHS_a_Grabacion"/>
+  <clavesAjenas columna="//@Tablas.8/@columnas.2" columnaReferenciada="//@Tablas.5/@columnas.0" Nombre="FK_de_Blu-Ray_a_Grabacion"/>
 </MyER:Esquema>
