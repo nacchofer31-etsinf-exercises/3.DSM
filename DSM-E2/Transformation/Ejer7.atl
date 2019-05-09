@@ -17,7 +17,7 @@ rule Diagrama2Esquema {
 
 rule Clase2Tabla {
 	from
-		c : UML!Clase
+		c : UML!Clase (c.csuper.oclIsUndefined())
 	to 
 		t : ER!Tabla (
 			Nombre <- c.nombre,
@@ -31,9 +31,9 @@ rule Clase2Tabla {
 		)
 }
 
-rule clasehija2table {
+rule ClaseHija2Tabla {
 	from
-		c : UML!Clase (not c.super.oclIsUndefined())
+		c : UML!Clase (not c.csuper.oclIsUndefined())
 	to 
 		t : ER!Tabla (
 			Nombre <- c.nombre,
@@ -41,24 +41,23 @@ rule clasehija2table {
 			columnas <- c.atributos
 		),
 		col : ER!Columna (
-			Nombre <- 'id_' + c.nombre,
+			Nombre <- 'ID_' + c.nombre,
 			EsPrimaria <- true,
 			Tipo <- #integer,
 			enClaveAjena <- fk
 		),
 		fk : ER!ClaveAjena (
-			Nombre <- 'ca_de_' + c.nombre + '_a_' + c.super.nombre,
+			Nombre <- 'ca_de_' + c.nombre + '_a_' + c.csuper.nombre,
 			columna <- fk_col,
 
-			columnaReferenciada <- thisModule.resolveTemp(c.super, 'col'),
+			columnaReferenciada <- thisModule.resolveTemp(c.csuper, 'col'),
 			esquema <- t.Padre
 		),
 		fk_col : ER!Columna (
-			Nombre <- 'id_fk_' + c.super.nombre,
+			Nombre <- 'id_fk_' + c.csuper.nombre,
 			tabla <- t
 		)
 }
-
 
 rule Atributo2Columna {
 	from 
@@ -77,9 +76,10 @@ rule Atributo2Columna {
 		)
 }
 
+
 rule Asociacion2FK { -- De 1 a 1 o de 1 a N
 	from 
-		a : UML!Asociacion (a.finrelacion.first().maxCard = 1)
+		a : UML!Asociacion (a.finrelacion.first().maxCard.toString() = '1')
 	to 
 		fk : ER!ClaveAjena (
 			Nombre  <- 'ca_de_' + a.finrelacion.last().rol + '_a_' + a.finrelacion.first().rol,
@@ -95,7 +95,7 @@ rule Asociacion2FK { -- De 1 a 1 o de 1 a N
 
 rule Asociacion2FK2 { -- De N a 1
 	from 
-		a : UML!Asociacion (a.finrelacion.last().maxCard = 1 and a.finrelacion.first().maxCard = 2)
+		a : UML!Asociacion (a.finrelacion.last().maxCard.toString() = '1' and a.finrelacion.first().maxCard.toString() = '*')
 	to 
 		fk : ER!ClaveAjena (
 			Nombre <- 'ca_de_' + a.finrelacion.first().rol + '_a_' + a.finrelacion.last().rol,
@@ -110,7 +110,7 @@ rule Asociacion2FK2 { -- De N a 1
 
 rule Asociacion2FK3 { -- De N a N
 	from
-		a : UML!Asociacion (a.finrelacion.first().maxCard = 2 and a.finrelacion.last().maxCard = 2)
+		a : UML!Asociacion (a.finrelacion.first().maxCard.toString() = '*' and a.finrelacion.last().maxCard.toString() = '*')
 	to 
 		fk_1 : ER!ClaveAjena (
 			Nombre <- 'ca_de_' + a.finrelacion.first().rol + '_a_' + a.finrelacion.last().rol,

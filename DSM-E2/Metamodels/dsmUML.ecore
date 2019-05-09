@@ -36,10 +36,10 @@
         eType="#//Diagrama" eOpposite="#//Diagrama/clases"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="atributos" upperBound="-1"
         eType="#//Atributo" containment="true" eOpposite="#//Atributo/clase"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="super" eType="#//Clase"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="csuper" eType="#//Clase"
         eOpposite="#//Clase/sub"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sub" upperBound="-1" eType="#//Clase"
-        eOpposite="#//Clase/super"/>
+        eOpposite="#//Clase/csuper"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="finrelacion" upperBound="-1"
         eType="#//FinRelacion" eOpposite="#//FinRelacion/clase"/>
   </eClassifiers>
