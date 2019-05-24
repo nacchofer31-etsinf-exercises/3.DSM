@@ -1,0 +1,12 @@
+[comment encoding = UTF-8 /]
+[module generate('MyER')]
+
+
+[template public generateElement(anEsquema : Esquema)]
+[comment @main/]
+
+[file (anEsquema.Nombre.concat('.sql'), false, 'UTF-8')]
+CREATE DATABASE [anEsquema.Nombre/];
+
+[/file]
+[/template]

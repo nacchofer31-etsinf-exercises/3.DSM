@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated entrega3 -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="MyER.presentation.MyERModelWizardID"
+            name="%_UI_MyERModelWizard_label"
+            class="MyER.presentation.MyERModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/MyERModelFile.gif">
+         <description>%_UI_MyERModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated entrega3 -->
+      <editor
+            id="MyER.presentation.MyEREditorID"
+            name="%_UI_MyEREditor_label"
+            icon="icons/full/obj16/MyERModelFile.gif"
+            extensions="myer"
+            class="MyER.presentation.MyEREditor"
+            contributorClass="MyER.presentation.MyERActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
