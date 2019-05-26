@@ -20,4 +20,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
 Export-Package: DSMEntrega3Aceleo.main
+Bundle-ClassPath: .,
+ bin/
 
