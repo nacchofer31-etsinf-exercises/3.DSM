@@ -8,5 +8,37 @@
 [file (anEsquema.Nombre.concat('.sql'), false, 'UTF-8')]
 CREATE DATABASE [anEsquema.Nombre/];
 
+
+[for (t : Tabla | anEsquema.Tablas) separator ('\n')]
+CREATE TABLE [t.Nombre/]
+
+(
+[for (c : Columna | t.columnas) separator (',\n') ]	
+	[c.Nombre/] [obtenerTipo(c.Tipo)/] [esPrimaria(c.EsPrimaria)/]
+[/for]
+
+[for (c : Columna | t.columnas)]
+	[for (fk : ClaveAjena | c.clavesAjena) ] 
+,['\n'/]	CONSTRAINT [fk.Nombre/] FOREIGN KEY ([c.Nombre/]) REFERENCES [fk.columnaReferenciada.tabla.Nombre/]([fk.columnaReferenciada.Nombre/])
+	[/for]
+[/for]
+);
+
+[/for]
 [/file]
 [/template]
+
+
+[query public obtenerTipo(tipo : TipoDatosER) : String = 
+if tipo = TipoDatosER::integer 
+	then 'int' 
+	else if tipo = TipoDatosER::double 
+		 then 'real' 
+		 else 'varchar(20)'
+		 endif 
+endif
+/]
+
+[query public esPrimaria(primaria : Boolean) : String =
+if primaria = true then 'PRIMARY KEY' else 'NOT NULL' endif
+/]
